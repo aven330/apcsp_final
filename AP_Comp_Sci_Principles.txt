@@ -1,0 +1,81 @@
+var radius = readInt("Change size of pen by typing size number");
+var pen = new Circle(radius);
+var arr = [Color.red, Color.green, Color.blue, Color.yellow, Color.cyan, Color.orange, Color.white, Color.black, Color.gray, Color.purple];
+var color = arr[7];
+
+function start() {
+    // Set up mouse callbacks
+    add(pen);
+    mouseMoveMethod(onMouseMove);
+    mouseDragMethod(trail);
+    mouseClickMethod(trail);
+    keyDownMethod(colorSet);
+    signature(name);
+    colorPalette();
+}
+
+function onMouseMove(e) {
+    pen.setPosition(e.getX(), e.getY());
+}
+function trail(e){
+    var trail = new Circle(radius);
+    trail.setColor(color);
+    pen.setColor(color);
+    trail.setPosition(e.getX()-5, e.getY()-5);
+    add(trail);
+}
+
+function colorSet(e){
+    if(e.keyCode == Keyboard.letter('0')){
+        color = arr[0];
+    }
+    if(e.keyCode == Keyboard.letter('1')){
+        color = arr[1];
+    }
+    if(e.keyCode == Keyboard.letter('2')){
+        color = arr[2];
+    }
+    if(e.keyCode == Keyboard.letter('3')){
+        color = arr[3];
+    }
+    if(e.keyCode == Keyboard.letter('4')){
+        color = arr[4];
+    }
+    if(e.keyCode == Keyboard.letter('5')){
+        color = arr[5];
+    }
+    if(e.keyCode == Keyboard.letter('6')){
+        color = arr[6];
+    }
+    if(e.keyCode == Keyboard.letter('7')){
+        color = arr[7];
+    }
+    if(e.keyCode == Keyboard.letter('8')){
+        color = arr[8];
+    }
+    if(e.keyCode == Keyboard.letter('9')){
+        color = arr[9];
+    }
+    
+}
+
+function signature(name){
+    var name = readLine("Sign it here!");
+    var sign = new Text(name, "15pt arial");
+    sign.setPosition(getWidth()/4,getHeight()-10);
+    sign.setColor(arr[7]);
+    add(sign);
+}
+
+function colorPalette(){
+    for(var i = 0; i <= 9; i++){
+        var rect = new Rectangle(25,25);
+        var num = new Text(i,"10pt arial");
+        num.setPosition(7.5+(25*i),15);
+        num.setColor("#737373");
+        rect.setColor(arr[i]);
+        rect.setPosition(0+(25*i),0);
+        add(rect);
+        add(num);
+    }
+}
